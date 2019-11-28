@@ -1,1 +1,6 @@
 # PytorchDataloaderForTensorflow
+## Use
+As the PyTorch Dataloader has some transforms for input images that can not be done with <code>tf.keras</code> transforms easily it is useful to be able to load image data with a PyTorch dataloader even for fitting a <code>tf.keras</code> model. Therefore a class is implemented that uses a PyTorch dataloader object (doing the transformation on the data) which can be fed into the <code>tf.keras.model.fit_generator</code> function, to provide the training data for the <code>tf.keras model</code>.
+## Setup
+The python files were created for python version 3.7, although it might also work for past or future versions.
+To use this class, some python modules need to be installed first. Using <code>pip</code> the packages can be installed by either typing <br/><code>pip install -r requirements.txt</code><br/> in terminal, if the requirements.txt file exists in the current working directory or by typing <br/><code>pip install tensorflow==2.0.0 torch==1.3.1 torchvision==0.4.2</code><br/> into the terminal (!python and pip need to be installed first, the recommended version for pip is at least 19.3.1). The versions of the modules listed above were used at the time of the creation of these files but future versions of these modules might alos work. Another way to install these packages is by using <code>conda</code>.
