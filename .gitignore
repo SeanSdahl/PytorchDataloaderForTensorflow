@@ -6,4 +6,3 @@ __pycache__
 .idea
 #git specific folder
 .gitignore.swp
-#
