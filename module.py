@@ -16,20 +16,20 @@ class DataGenerator(keras.utils.Sequence):
         ----------
         gen : torch.utils.data.dataloader.DataLoader
             pytorch dataloader object; should be able to load image data for pytorch model
-        cls : int
+        ncl : int
             number of classes of input data; equal to number of outputs of model
     """
-    def __init__(self, gen, cls):
+    def __init__(self, gen, ncl):
         """
             Parameters
             ----------
             gen : torch.utils.data.dataloader.DataLoader
                 pytorch dataloader object; should be able to load image data for pytorch model
-            cls : int
+            ncl : int
                 number of classes of input data; equal to number of outputs of model
         """
         self.gen = gen
-        self.cls = cls
+        self.ncl = ncl
 
     def __getitem__(self, _):
         """
@@ -46,7 +46,7 @@ class DataGenerator(keras.utils.Sequence):
         # swap dimensions of image data to match tf.keras dimension ordering
         ims = np.swapaxes(np.swapaxes(ims.numpy(), 1, 3), 1, 2)
         # convert labels to one hot representation
-        lbs = np.eye(self.cls)[lbs]
+        lbs = np.eye(self.ncl)[lbs]
         return ims, lbs
 
     def __len__(self):
