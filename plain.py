@@ -1,8 +1,8 @@
 import numpy as np
-from tensorflow import keras
+import tensorflow.keras as k
 
 
-class DataGenerator(keras.utils.Sequence):
+class DataGenerator(k.utils.Sequence):
     def __init__(self, gen, ncl):
         self.gen = gen
         self.ncl = ncl

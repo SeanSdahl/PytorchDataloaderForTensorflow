@@ -19,24 +19,24 @@ For that the file [module.py](module.py) should be inserted into the project fol
 In the following python code the following elements should be included:<br/>
 ```python
   # load the required modules
-  from tensorflow import keras
-  from torch import utils, [...]
-  from torchvision import datasets, transforms, [...]
+  import tensorflow.keras as k
+  import torch as pt
+  from torchvision as tv
   
   # define the transforms for the pytorch dataloader
   # additional transforms from the torch.transforms package can be added
-  transform = transfomrs.Compose(
+  transform = tv.transforms.Compose(
     [...],
-    transforms.ToTensor(),
+    tv.transforms.ToTensor(),
     [...]
   )
   
   # create the dataloader for the tf.keras model from PyTorch DataLoader object
-  dataset = datasets.ImageFolder('path/to/folder', transform=transform)
-  dataloader = DataGenerator(utils.data.DataLoader(dataset, [...]), ncl) # ncl represents the number of classes for the model
+  dataset = tv.datasets.ImageFolder('path/to/folder', transform=transform)
+  dataloader = DataGenerator(pt.utils.data.DataLoader(dataset, [...]), ncl) # ncl represents the number of classes for the model
   
   # creating and defining the tf.keras model
-  model = keras.models.Sequential()
+  model = k.models.Sequential()
   [...] # using the model.add([...]) function new layers can be added to the model
   
   model.compile([...]) # compile the model (custom parameter choices)

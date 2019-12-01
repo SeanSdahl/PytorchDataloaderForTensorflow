@@ -1,8 +1,8 @@
 import numpy as np
-from tensorflow import keras
+import tensorflow.keras as k
 
 
-class DataGenerator(keras.utils.Sequence):
+class DataGenerator(k.utils.Sequence):
     """
         class to be fed into model.fit_generator method of tf.keras model
 
