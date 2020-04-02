@@ -29,6 +29,7 @@ class DataGenerator(k.utils.Sequence):
                 number of classes of input data; equal to number of outputs of model
         """
         self.gen = gen
+        self.iter = iter(gen)
         self.ncl = ncl
 
     def __getitem__(self, _):
@@ -42,7 +43,13 @@ class DataGenerator(k.utils.Sequence):
             lbs : np.ndarray
                 labels; tensor of (batch_size, number_of_classes); correct outputs for model
         """
-        ims, lbs = next(iter(self.gen))  # generation of data handled by pytorch dataloader
+        # catch when no items left in iterator
+        try:
+            ims, lbs = next(self.iter)  # generation of data handled by pytorch dataloader
+        # catch when no items left in iterator
+        except StopIteration:
+            self.iter = iter(self.gen)  # reinstanciate iteator of data
+            ims, lbs = next(self.iter)  # generation of data handled by pytorch dataloader
         # swap dimensions of image data to match tf.keras dimension ordering
         ims = np.swapaxes(np.swapaxes(ims.numpy(), 1, 3), 1, 2)
         # convert labels to one hot representation
